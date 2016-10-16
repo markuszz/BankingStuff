@@ -2,6 +2,7 @@
 using BankingStuff.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,20 +12,34 @@ namespace BankingStuff.Controllers
 {
     public class CustomerController : Controller
     {
-        public long customerID;
-
+        private long customerID;
         private BankContext db = new BankContext();
 
-        // GET: Account
-        [Authorize]
-        public ActionResult Index()
+        // GET: Customers/Details/5
+        public ActionResult Details(long? id)
         {
-            IEnumerable<Account> a = db.Accounts.ToList();
-            foreach (var lul in a)
+            Debug.WriteLine(Session["custID"]);
+            if (id == null)
             {
-
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            return View(db.Accounts.ToList());
+            Customer customer = db.Customers.Find(id);
+            if (customer == null || !customer.customerID.Equals(Session["custID"]))
+            {
+                return HttpNotFound();
+            }
+
+            Account[] array = customer.Account.ToArray();
+          
+            Debug.Write(array[0].balance);  
+                
+               
+                
+                
+                
+                
+
+            return View(customer);
         }
 
 
@@ -37,9 +52,10 @@ namespace BankingStuff.Controllers
         [HttpPost]
         public ActionResult LogIn(Customer customer, string returnUrl)
         {
+
             if (ModelState.IsValid)
             {
-                Customer cust = new Customer();
+                this.customerID = customer.customerID;
                 string password = Customer.GetUserPassword(customer.customerID);
 
                 if (string.IsNullOrEmpty(password))
@@ -48,9 +64,9 @@ namespace BankingStuff.Controllers
                 {
                     if (customer.password.Equals(password))
                     {
-                        customerID = cust.customerID;
-                        FormsAuthentication.SetAuthCookie(cust.customerID.ToString(), false);
-                        return RedirectToAction("Index", "Customer");
+                        Session["custID"] = customer.customerID;
+                        FormsAuthentication.SetAuthCookie(customer.customerID.ToString(), false);
+                        return RedirectToAction("Details", "Customer", new { id = customer.customerID});
                     }
                     else
                     {
@@ -88,9 +104,5 @@ namespace BankingStuff.Controllers
             return View(customer);
         }
 
-        private ActionResult View(object cust)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

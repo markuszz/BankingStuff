@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,7 @@ namespace BankingStuff.Models
     {
         [Required(ErrorMessage = "*")]
         [Display(Name = "Login ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long customerID { get; set; }
         [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
@@ -19,7 +21,7 @@ namespace BankingStuff.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
 
-        public virtual Account Accounts { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
 
         public static string GetUserPassword(long loginName)
         {

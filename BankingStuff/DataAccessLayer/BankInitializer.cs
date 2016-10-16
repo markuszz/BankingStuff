@@ -24,10 +24,10 @@ namespace BankingStuff.DataAccessLayer
 
             var accounts = new List<Account>
             {
-                new Account{accountID=1,customerID=23069431151,balance=666},
-                new Account{accountID=2,customerID=1,balance = 80000},
-                new Account{accountID=3, customerID=2, balance=250},
-                new Account{ accountID=4, customerID=23069431151, balance=20000},
+                new Account{accountID=1,accountName="Brukskonto",customerID=23069431151,balance=666},
+                new Account{accountID=2,accountName="Min Konto", customerID=12121212121,balance = 80000},
+                new Account{accountID=3, accountName="Kontoen min", customerID=34343434343, balance=250},
+                new Account{ accountID=4, accountName="Sparekonto", customerID=23069431151, balance=20000},
 
             };
             accounts.ForEach(s => context.Accounts.Add(s));
