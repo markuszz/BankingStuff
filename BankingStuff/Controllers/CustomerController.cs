@@ -11,13 +11,20 @@ namespace BankingStuff.Controllers
 {
     public class CustomerController : Controller
     {
+        public long customerID;
 
         private BankContext db = new BankContext();
 
+        // GET: Account
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Account> a = db.Accounts.ToList();
+            foreach (var lul in a)
+            {
+
+            }
+            return View(db.Accounts.ToList());
         }
 
 
@@ -41,8 +48,9 @@ namespace BankingStuff.Controllers
                 {
                     if (customer.password.Equals(password))
                     {
+                        customerID = cust.customerID;
                         FormsAuthentication.SetAuthCookie(cust.customerID.ToString(), false);
-                        return RedirectToAction("Index", "Account");
+                        return RedirectToAction("Index", "Customer");
                     }
                     else
                     {
