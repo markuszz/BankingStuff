@@ -8,31 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using BankingStuff.DataAccessLayer;
 using BankingStuff.Models;
-using System.Web.Security;
 
 namespace BankingStuff.Controllers
 {
-
-    [Authorize]
-    public class AccountsController : Controller
+    public class AccountController : Controller
     {
         private BankContext db = new BankContext();
 
-        public ActionResult SignOut()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("LogIn", "Customer");
-        }
-
         // GET: Accounts
-        [Authorize]
         public ActionResult Index()
         {
             return View(db.Accounts.ToList());
         }
 
         // GET: Accounts/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -48,7 +37,6 @@ namespace BankingStuff.Controllers
         }
 
         // GET: Accounts/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -59,7 +47,6 @@ namespace BankingStuff.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult Create([Bind(Include = "accountID,customerID,balance")] Account account)
         {
             if (ModelState.IsValid)
@@ -73,7 +60,6 @@ namespace BankingStuff.Controllers
         }
 
         // GET: Accounts/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +79,6 @@ namespace BankingStuff.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult Edit([Bind(Include = "accountID,customerID,balance")] Account account)
         {
             if (ModelState.IsValid)
@@ -106,7 +91,6 @@ namespace BankingStuff.Controllers
         }
 
         // GET: Accounts/Delete/5
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,7 +108,6 @@ namespace BankingStuff.Controllers
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Account account = db.Accounts.Find(id);

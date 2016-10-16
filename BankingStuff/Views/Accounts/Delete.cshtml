@@ -10,8 +10,6 @@
 <div>
     <h4>Account</h4>
     <hr />
-    @Html.ActionLink("Signout", "SignOut", "Account")
-
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.customerID)
@@ -32,8 +30,6 @@
     </dl>
 
     @using (Html.BeginForm()) {
-        @Html.ActionLink("Signout","SignOut","Account")
-
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

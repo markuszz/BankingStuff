@@ -1,12 +1,10 @@
-﻿    @model IEnumerable<BankingStuff.Models.Account>
+﻿@model IEnumerable<BankingStuff.Models.Account>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-@Html.ActionLink("Signout", "SignOut", "Accounts")
-
 
 <p>
     @Html.ActionLink("Create New", "Create")

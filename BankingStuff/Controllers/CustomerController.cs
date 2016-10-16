@@ -1,4 +1,5 @@
-﻿using BankingStuff.Models;
+﻿using BankingStuff.DataAccessLayer;
+using BankingStuff.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,16 @@ namespace BankingStuff.Controllers
 {
     public class CustomerController : Controller
     {
+
+        private BankContext db = new BankContext();
+
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
         // GET: Customer
         public ActionResult LogIn()
         {
@@ -31,7 +42,7 @@ namespace BankingStuff.Controllers
                     if (customer.password.Equals(password))
                     {
                         FormsAuthentication.SetAuthCookie(cust.customerID.ToString(), false);
-                        return RedirectToAction("Index", "Accounts");
+                        return RedirectToAction("Index", "Account");
                     }
                     else
                     {
@@ -42,6 +53,31 @@ namespace BankingStuff.Controllers
 
             // If we got this far, so qmething failed, redisplay form
             return View();
+        }
+
+        // GET: Customers/Create
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Customers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Create([Bind(Include = "customerID,password,firstName,lastName")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(customer);
         }
 
         private ActionResult View(object cust)
