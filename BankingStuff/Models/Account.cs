@@ -14,7 +14,7 @@ namespace BankingStuff.Models
         public long customerID { get; set; }
         public int balance { get; set; }
 
-        public Transaction transactions { get; set; }
+        public virtual ICollection<Transaction> Transaction { get; set; }
 
     }
 }

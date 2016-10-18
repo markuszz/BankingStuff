@@ -16,6 +16,7 @@ namespace BankingStuff.Controllers
         private BankContext db = new BankContext();
 
         // GET: Customers/Details/5
+        [Authorize]
         public ActionResult Details(long? id)
         {
             Debug.WriteLine(Session["custID"]);
@@ -28,19 +29,12 @@ namespace BankingStuff.Controllers
             {
                 return HttpNotFound();
             }
+         
 
-            Account[] array = customer.Account.ToArray();
-          
-            Debug.Write(array[0].balance);  
-                
-               
-                
-                
-                
-                
-
+                                    
             return View(customer);
         }
+
 
 
         // GET: Customer
@@ -84,6 +78,13 @@ namespace BankingStuff.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("LogIn", "Customer");
         }
 
         // POST: Customers/Create

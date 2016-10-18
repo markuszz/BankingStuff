@@ -14,7 +14,7 @@ namespace BankingStuff.DataAccessLayer
         {
             var customers = new List<Customer>
             {
-                new Customer{customerID=23069431151,password="aidsmachine",firstName="Markus", lastName="Hellestveit"},
+                new Customer{customerID=23069431151,password="pass",firstName="Markus", lastName="Hellestveit"},
                 new Customer{customerID=12121212121,password="jew", firstName="johnny", lastName="lam"},
                 new Customer{customerID=34343434343,password="ponny", firstName="per", lastName="Andreasen"},
                 new Customer{ customerID=955940321951, password="matpåflaske", firstName="donald", lastName="trump"}
