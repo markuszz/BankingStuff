@@ -37,9 +37,12 @@ namespace BankingStuff.Controllers
         }
 
         // GET: Transactions/Create
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult MakeTransaction(int accountID)
         {
-            return View();
+            ViewBag.accountID = accountID;
+            
+            return View(new Transaction());
         }
 
         // POST: Transactions/Create
@@ -47,7 +50,8 @@ namespace BankingStuff.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
+        [Authorize]
+        public ActionResult MakeTransaction([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {

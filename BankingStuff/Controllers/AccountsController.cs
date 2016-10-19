@@ -21,6 +21,14 @@ namespace BankingStuff.Controllers
             return View(db.Accounts.ToList());
         }
 
+        public ActionResult MakePayment(int accountID)
+        {
+            Account account = db.Accounts.Find(accountID);
+
+            return View(account);
+           
+        }
+
         // GET: Accounts/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,6 +47,7 @@ namespace BankingStuff.Controllers
         // GET: Accounts/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
