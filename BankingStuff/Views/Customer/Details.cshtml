@@ -30,60 +30,28 @@
         }
 
         <h2>Schedule Payment</h2>
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("MakePayment", "Account"))
         {
             <div class="form-group">
                 <select name="accountID">
                     @foreach (var item in Model.Account)
-                {
+                    {
                         <option value="@item.accountID">@item.accountName</option>
                     }
                 </select>
             </div>
-                <br />
-                <div class="form-group">
-                    @Html.DisplayNameFor(m => m.Account.First().Transaction.First().receiverID)
-                    <div class="col-md-10">
-                        @Html.EditorFor(m => m.Account.First().Transaction.First().receiverID)
-                    </div>
-                </div>
-                <br />
+            <br />
 
-                <div class="form-group">
-                    @Html.DisplayNameFor(m => m.Account.First().Transaction.First().amount)
-                    <div class="col-md-10">
-                        @Html.EditorFor(m => m.Account.First().Transaction.First().amount)
-                    </div>
-                </div>
-                <br />
-                <div class="form-group">
-                    @Html.DisplayNameFor(m => m.Account.First().Transaction.First().transactionDate)
-                    <div class="col-md-10">
-                        @Html.EditorFor(m => m.Account.First().Transaction.First().transactionDate)
-                    </div>
-                </div>
+            <input type="submit" value="Make Transaction" class="btn btn-default" />
 
 
-                 <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Confirm transaction" class="btn btn-default" />
-            </div>
-        </div>
-
-
-
-                }
-
-
-
-
-
-
-
+        }
 </dl>
 </div>
 <p>
+
    @Html.ActionLink("Completed Bank Transactions", "CompletedTransactions", "Transactions")
+    <br />
    @Html.ActionLink("Signout", "SignOut", "Customer")
 
 </p>

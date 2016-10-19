@@ -35,6 +35,15 @@ namespace BankingStuff.Controllers
             return View(customer);
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult Details(Customer customer) 
+        {
+            Debug.Write("receiverID: ");
+            Debug.Write(customer.Account.SingleOrDefault().Transaction.SingleOrDefault().receiverID);
+            return RedirectToAction("Details", new { id = Session["custID"] });
+        }
+
 
 
         // GET: Customer
@@ -57,7 +66,7 @@ namespace BankingStuff.Controllers
                 else
                 {
                     if (customer.password.Equals(password))
-                    {
+                    { 
                         Session["custID"] = customer.customerID;
                         FormsAuthentication.SetAuthCookie(customer.customerID.ToString(), false);
                         return RedirectToAction("Details", "Customer", new { id = customer.customerID});

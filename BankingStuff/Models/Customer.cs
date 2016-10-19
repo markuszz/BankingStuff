@@ -23,6 +23,7 @@ namespace BankingStuff.Models
 
         public virtual ICollection<Account> Account { get; set; }
 
+
         public static string GetUserPassword(long loginName)
         {
             using (DataAccessLayer.BankContext db = new BankContext())

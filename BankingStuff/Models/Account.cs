@@ -15,6 +15,5 @@ namespace BankingStuff.Models
         public int balance { get; set; }
 
         public virtual ICollection<Transaction> Transaction { get; set; }
-
     }
 }
