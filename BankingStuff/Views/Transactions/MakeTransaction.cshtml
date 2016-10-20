@@ -7,18 +7,14 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("RegisterTransaction", "Transactions"))
 {
 
     <div class="form-horizontal">
         <h4>Transaction</h4>
         <hr />
-        <div class="form-group">
-            @Html.LabelFor(model => model.accountID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.accountID, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+        <input type="text" value="@ViewBag.accountID" name="accountID" hidden />
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.receiverID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,7 +27,6 @@
             @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
             </div>
         </div>
 

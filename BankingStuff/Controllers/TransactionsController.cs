@@ -38,6 +38,7 @@ namespace BankingStuff.Controllers
 
         // GET: Transactions/Create
         [Authorize]
+        [HttpPost]
         public ActionResult MakeTransaction(int accountID)
         {
             ViewBag.accountID = accountID;
@@ -49,16 +50,15 @@ namespace BankingStuff.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult MakeTransaction([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
+        public ActionResult RegisterTransaction([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
         {
-            if (ModelState.IsValid)
-            {
+           // if (ModelState.IsValid)
+          //  {
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+          //  }
 
             return View(transaction);
         }
