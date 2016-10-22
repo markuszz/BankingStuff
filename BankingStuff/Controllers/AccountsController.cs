@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BankingStuff.DataAccessLayer;
 using BankingStuff.Models;
+using System.Diagnostics;
 
 namespace BankingStuff.Controllers
 {
@@ -29,11 +30,13 @@ namespace BankingStuff.Controllers
            
         }
 
+
         // GET: Accounts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
+                Debug.Write("ID: " + id);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Account account = db.Accounts.Find(id);

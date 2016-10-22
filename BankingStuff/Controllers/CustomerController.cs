@@ -39,8 +39,6 @@ namespace BankingStuff.Controllers
         [HttpPost]
         public ActionResult Details(Customer customer) 
         {
-            Debug.Write("receiverID: ");
-            Debug.Write(customer.Account.SingleOrDefault().Transaction.SingleOrDefault().receiverID);
             return RedirectToAction("Details", new { id = Session["custID"] });
         }
 

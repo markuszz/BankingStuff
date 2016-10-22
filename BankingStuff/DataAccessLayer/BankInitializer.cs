@@ -35,9 +35,11 @@ namespace BankingStuff.DataAccessLayer
 
             var transactions = new List<Transaction>
             {
-                new Transaction{transactionID=1,accountID=1, receiverID=2, transactionDate = DateTime.Parse("2016-11-12") },
-                new Transaction{transactionID=2,accountID=2, receiverID=3, transactionDate = DateTime.Parse("2016-09-12") },
-                new Transaction{transactionID=3,accountID=3, receiverID=1, transactionDate = DateTime.Parse("2016-01-12") },
+                /*
+                new Transaction{transactionID=1,accountID=1, receiverAccountID=2, transactionDate = DateTime.Parse("2016-11-12") },
+                new Transaction{transactionID=2,accountID=2, receiverAccountID=3, transactionDate = DateTime.Parse("2016-09-12") },
+                new Transaction{transactionID=3,accountID=3, receiverAccountID=1, transactionDate = DateTime.Parse("2016-01-12") },
+                */
             };
 
             transactions.ForEach(s => context.Transactions.Add(s));

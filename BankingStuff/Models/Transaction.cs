@@ -9,7 +9,7 @@ namespace BankingStuff.Models
     {
         public int transactionID { get; set; }
         public int accountID { get; set; }
-        public int receiverID { get; set; }
+        public int receiverAccountID { get; set; }
         public int amount { get; set; }
         public DateTime transactionDate { get; set; }
     }

@@ -7,7 +7,7 @@
 <h2>LogIn</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())   
 {
     @Html.AntiForgeryToken()
     
@@ -22,7 +22,7 @@
                 @Html.EditorFor(model => model.customerID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.customerID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>  
 
         <div class="form-group">
             @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })

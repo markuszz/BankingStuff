@@ -1,0 +1,17 @@
+﻿@model IEnumerable<BankingStuff.Models.Account>
+
+
+
+
+<div class="form-group">
+    <select name="receiverAccountID">
+        @foreach (var item in Model)
+        {
+            <option value="@item.accountID">@item.accountName</option>
+        }
+
+    </select>
+</div>
+<br />
+
+

@@ -8,12 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using BankingStuff.DataAccessLayer;
 using BankingStuff.Models;
+using System.Diagnostics;
 
 namespace BankingStuff.Controllers
 {
     public class TransactionsController : Controller
     {
         private BankContext db = new BankContext();
+
+        public PartialViewResult ShowAccounts(long receiverCustomerID)
+        {
+            //string code = Request.Form["txtCode"];
+            IEnumerable<Account> accounts = db.Accounts.Where(x => x.customerID == receiverCustomerID);
+            
+            return PartialView("_ShowAccounts", accounts);
+        }
+       
 
         // GET: Transactions
         public ActionResult Index()
@@ -51,13 +61,16 @@ namespace BankingStuff.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
-        public ActionResult RegisterTransaction([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
+        public ActionResult RegisterTransaction([Bind(Include = "transactionID,accountID,receiverAccountID,amount,transactionDate")] Transaction transaction)
         {
-           // if (ModelState.IsValid)
-          //  {
-                db.Transactions.Add(transaction);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            // if (ModelState.IsValid)
+            //  {
+         
+      
+            db.Transactions.Add(transaction);
+            db.SaveChanges();
+
+                return RedirectToAction("Details", "Customer", new { id = Session["custID"]});
           //  }
 
             return View(transaction);

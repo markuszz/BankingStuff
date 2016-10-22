@@ -34,10 +34,13 @@
         {
             <div class="form-group">
                 <select name="accountID">
+                    Select which one of your accounts you want to transfer money from:
                     @foreach (var item in Model.Account)
                     {
                         <option value="@item.accountID">@item.accountName</option>
                     }
+
+    
                 </select>
             </div>
             <br />
