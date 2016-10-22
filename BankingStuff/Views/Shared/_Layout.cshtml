@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("INT Bank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("INT Bank", "Index", "Customer", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 
@@ -24,8 +24,8 @@
                 @if (User.Identity.IsAuthenticated)
                 {                  
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("My Overview", "Details", new { id = Session["custID"] }, new { @class = "btn-kunde" })</li>
-                        <li>@Html.ActionLink("Signout", "SignOut", "Customer", new { @class = "btn btn-default" })</li>
+                        <li>@Html.ActionLink("My Overview", "Details", "Customer", new { id = Session["custID"] }, new { @class = "btn-kunde" })</li>
+                        <li>@Html.ActionLink("Signout", "SignOut", "Customer" , null,new { style = "margin-top:0.8em;" })</li>
                     </ul>
                 }
                 else

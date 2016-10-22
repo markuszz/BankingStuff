@@ -35,6 +35,11 @@ namespace BankingStuff.Controllers
             return View(customer);
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult Details(Customer customer) 

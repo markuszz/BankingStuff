@@ -1,9 +1,13 @@
 ﻿body {
     padding-top: 80px;
     padding-bottom: 20px;
+    background-color: #EEEEEE;
 
 }
 
+footer {
+    border-top: 1px groove;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -31,11 +35,16 @@ body {
     color: black;
 }
 .navbar-header{
-    background-color: #EEEEEE;
+    background-color: #FAFAFA;
     color: white;
     height:5em;
 }
 
+.navbar-default{
+    background-color: #FAFAFA;
+    color: black;
+    border-bottom-color: #BDBDBD;
+}
 .navbar-brand{
     color: white;
 }
@@ -43,19 +52,9 @@ body {
 .nav .navbar-nav a:hover { color: black !important; }
 
 
-.btn-kunde:hover{
-    background-color: #039BE5 !important;
-}
 
-.btn-login:hover{
-    background-color: #43A047 !important;
-}
 
-.navbar-default{
-    background-color: #EEEEEE;
-    color: black;
-    border-bottom-color: #BDBDBD;
-}
+
 
 .navbar-default .navbar-nav > li > a {
     color: #212121;
@@ -82,20 +81,28 @@ body {
 
 
 .btn-login{
+    width: 100px;
     background-color: #66BB6A;
-    border-radius: 8px;
+    border-radius: 80px;
     margin-top: 0.8em;
+    text-align: center;
 }
 
-.btn-login:hover .btn-login:focus{
-    background-color: #388E3C;
-}
 
 .btn-kunde{
+    width: 140px;
     background-color: #4FC3F7;
-    border-radius: 8px;
+    border-radius: 80px;
     margin-top: 0.8em;
-    margin-right: 3px;
+    margin-right: 10px;
+    text-align: center;
 }
 
+.btn-kunde:hover{
+    background-color: #039BE5 !important;
+}
+
+.btn-login:hover{
+    background-color: #43A047 !important;
+}
 

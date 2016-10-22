@@ -4,52 +4,71 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details overview</h2>
 
 <div>
     <h4>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</h4>
     <hr />
     <dl class="dl-horizontal">
-        @foreach (var item in Model.Account)
-        {
+        <div class="col-lg-6">
             <h3>Account:</h3>
-            <tr>
-                <td>
-                    Konto: @Html.DisplayFor(modelItem => item.accountName)
-                </td>
-                <br />
-                <td>
-                    Balance: @Html.DisplayFor(modelItem => item.balance)
-                </td>
-                <td>
-               
-                </td>
-            </tr>
-            <br />
-            <br />
-        }
+            <table class="table table-responsive table-striped ">
+                <thead>
+                    <tr>
+                        <th>Accountname</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int sum = 0;
+                        foreach (var item in Model.Account)
+                        {
 
-        <h2>Schedule Payment</h2>
-        @using (Html.BeginForm("MakeTransaction", "Transactions"))
-        {
-            <div class="form-group">
-                <select name="accountID">
-                    Select which one of your accounts you want to transfer money from:
-                    @foreach (var item in Model.Account)
-                    {
-                        <option value="@item.accountID">@item.accountName</option>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.accountName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.balance)</td>
+                        </tr>
+                            sum += item.balance;
+                        }
+                        String Str_sum = sum.ToString();
+                        <tr>
+                            <td>Total:</td>
+                            <td>@Html.DisplayName(Str_sum)</td>
+                        </tr>
                     }
-
-    
-                </select>
-            </div>
-            <br />
-
-            <input type="submit" value="Make Transaction" class="btn btn-default" />
+                       
+                </tbody>
+            </table>
+        </div>
 
 
-        }
-</dl>
+
+
+
+
+        <div class="col-lg-6">
+            <h2>Schedule Payment</h2>
+            @using (Html.BeginForm("MakeTransaction", "Transactions"))
+            {
+                <div class="form-group">
+                    <select name="accountID">
+                        Select which one of your accounts you want to transfer money from:
+                        @foreach (var item in Model.Account)
+                        {
+                            <option value="@item.accountID">@item.accountName</option>
+                        }
+
+
+                    </select>
+                </div>
+                <br />
+
+                <input type="submit" value="Make Transaction" class="btn btn-default" />
+
+
+            }
+        </div>
+    </dl>
 </div>
 <p>
 
