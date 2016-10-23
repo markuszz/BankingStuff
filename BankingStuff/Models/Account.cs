@@ -13,7 +13,6 @@ namespace BankingStuff.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int accountID { get; set; }
         public string accountName { get; set; }
-        [RegularExpression(@"[0-9]{11}", ErrorMessage = "Please write a correct person number")]
         public long customerID { get; set; }
         public int balance { get; set; }
 

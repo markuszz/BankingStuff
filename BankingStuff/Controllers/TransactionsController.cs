@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BankingStuff.DataAccessLayer;
 using BankingStuff.Models;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace BankingStuff.Controllers
 {
@@ -18,9 +19,15 @@ namespace BankingStuff.Controllers
 
         public PartialViewResult ShowAccounts(long receiverCustomerID)
         {
+            var regex = @"[0-9]{11}";
             //string code = Request.Form["txtCode"];
             IEnumerable<Account> accounts = db.Accounts.Where(x => x.customerID == receiverCustomerID);
-            
+            var match = Regex.Match(receiverCustomerID.ToString(), regex, RegexOptions.IgnoreCase); 
+            if (!match.Success)
+            {
+                string myStr = "Please write a correct person number";
+                return PartialView((object)myStr);
+            }
             return PartialView("_ShowAccounts", accounts);
         }
 
