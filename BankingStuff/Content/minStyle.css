@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 80px;
     padding-bottom: 20px;
-    background-color: #EEEEEE;
+    background-color: white;
 
 }
 
@@ -34,48 +34,23 @@ body {
 .navbar-default .navbar-brand{
     color: black;
 }
-.navbar-header{
-    background-color: #FAFAFA;
-    color: white;
-    height:5em;
-}
+
 
 .navbar-default{
-    background-color: #FAFAFA;
+
     color: black;
     border-bottom-color: #BDBDBD;
 }
-.navbar-brand{
-    color: white;
+
+.navbar-default .navbar-nav > li > a{
+    color: black;
 }
 
-.nav .navbar-nav a:hover { color: black !important; }
-
-
-
-
-
-
-.navbar-default .navbar-nav > li > a {
-    color: #212121;
-    font-weight:bolder;
-}
 
 @media (min-width: 768px){
     .navbar-nav {
     float: right;
     }
-
-}
-
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: transparent;
-}
-
-.navbar-default  .navbar-toggle .icon-bar {
-    background-color:blue;
-    height: 4px;
 
 }
 
@@ -105,4 +80,3 @@ body {
 .btn-login:hover{
     background-color: #43A047 !important;
 }
-

@@ -6,74 +6,80 @@
 
 <h2>Details overview</h2>
 
-<div>
+<content class="container">
     <h4>@Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <div class="col-lg-6">
-            <h3>Account:</h3>
-            <table class="table table-responsive table-striped ">
-                <thead>
-                    <tr>
-                        <th>Accountname</th>
-                        <th>Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{int sum = 0;
-                        foreach (var item in Model.Account)
-                        {
+    <div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h3>Account:</h3></div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-striped ">
+                        <thead>
+                            <tr>
+                                <th>Accountname</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int sum = 0;
+                                foreach (var item in Model.Account)
+                                {
 
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.accountName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.balance)</td>
-                        </tr>
-                            sum += item.balance;
-                        }
-                        String Str_sum = sum.ToString();
-                        <tr>
-                            <td>Total:</td>
-                            <td>@Html.DisplayName(Str_sum)</td>
-                        </tr>
-                    }
-                       
-                </tbody>
-            </table>
-        </div>
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.accountName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.balance)</td>
+                                    </tr>
+                                    sum += item.balance;
+                                }
+                                String Str_sum = sum.ToString();
+                                <tr>
+                                    <td>Total:</td>
+                                    <td>@Html.DisplayName(Str_sum)</td>
+                                </tr>
+                            }
 
-
-
-
-
-
-        <div class="col-lg-6">
-            <h2>Schedule Payment</h2>
-            @using (Html.BeginForm("MakeTransaction", "Transactions"))
-            {
-                <div class="form-group">
-                    <select name="accountID">
-                        Select which one of your accounts you want to transfer money from:
-                        @foreach (var item in Model.Account)
-                        {
-                            <option value="@item.accountID">@item.accountName</option>
-                        }
-
-
-                    </select>
+                        </tbody>
+                    </table>
+                    @Html.ActionLink("Show Completed Bank Transactions", "CompletedTransactions", "Transactions", new { @class = "btn btn-success" })
                 </div>
-                <br />
-
-                <input type="submit" value="Make Transaction" class="btn btn-default" />
-
-
-            }
+                
+            </div>
         </div>
-    </dl>
-</div>
+
+
+
+
+
+        <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Schedule Payment</h2></div>
+            <div class="panel-body">
+                @using (Html.BeginForm("MakeTransaction", "Transactions"))
+                {
+                    <div class="form-group">
+                        <lable for="fromAccount">Select sender account:</lable>
+                        <select name="accountID" id="fromAccount" class="form-control">
+                            @foreach (var item in Model.Account)
+                            {
+                                <option value="@item.accountID">@item.accountName</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+
+                    <input type="submit" value="Make Transaction" class="btn btn-default" />
+
+
+                }
+            </div>
+        </div>
+        </div>
+    </div>
+</content>
 <p>
 
-   @Html.ActionLink("Completed Bank Transactions", "CompletedTransactions", "Transactions")
-    <br />
-   @Html.ActionLink("Signout", "SignOut", "Customer")
+   
+    
 
 </p>
