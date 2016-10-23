@@ -11,7 +11,8 @@ namespace BankingStuff.Models
     public class Customer
     {
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Login ID")]
+        [Display(Name = "Person ID")]
+        [RegularExpression(@"[0-9]{11}", ErrorMessage = "Please write a correct person number")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long customerID { get; set; }
         [Required(ErrorMessage = "This field is required")]
