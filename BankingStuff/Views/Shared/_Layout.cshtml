@@ -39,9 +39,10 @@
                 }
                 else
                 {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Register", "register", null, new { @class = "btn-kunde" })</li>
-                        <li>@Html.ActionLink("Log in", "LogIn", null, new { @class = "btn-login" })</li>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Signup", "register", null, null)</li>
+                        <li>@Html.ActionLink("Login", "LogIn", null, null)</li>
                     </ul>
 
                 }

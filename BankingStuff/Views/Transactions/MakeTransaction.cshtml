@@ -2,9 +2,11 @@
 
 @{
     ViewBag.Title = "Make Transaction";
+  
 }
 
-<h2>Make Transaction</h2>
+
+
 @section scripts
 {
     <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>
@@ -12,54 +14,64 @@
 }
 
 
-@Ajax.BeginForm("ShowAccounts", "Transactions",
-     new AjaxOptions
-     {
-         HttpMethod = "POST",
-         UpdateTargetId = "div1",
-         InsertionMode = InsertionMode.Replace,
-     })
-<h2>
-    Recipient CustomerID <input type="number" name="receiverCustomerID" value="" />
-    <br/>
-    <input type="submit" value="Find Accounts:" />
-</h2>
+
+
+
+<h1>Make Transaction</h1>
+
+@using (Ajax.BeginForm("ShowAccounts", "Transactions",
+                 new AjaxOptions
+                 {
+                     HttpMethod = "POST",
+                     UpdateTargetId = "showAccounts",
+                     InsertionMode = InsertionMode.Replace
+                 }))
+{
+
+    <div class="form-inline">
+
+            <lable>Recipient Person number:</lable>
+            <input type="number" name="receiverCustomerID" value="" class="form-control" />
+            <input type="submit" value="Find Accounts" class="btn btn-info" />
+            
+    
+    </div>
+}
+
 @{Html.EndForm();}
-
-
-
 
 
         @using (Html.BeginForm("RegisterTransaction", "Transactions"))
         {
 
             <div class="form-horizontal">
-                <hr />
-                <input type="text" value="@ViewBag.accountID" name="accountID" hidden />
-                                <div class="form-group">
-                <div class="form-group">
-
-                <div id="div1">
-                </div>
-                    </div>
-
-
-                    @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
+                <div class="container">
+                    <input type="text" value="@ViewBag.accountID" name="accountID" hidden />
+                    <div id="showAccounts"></div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.transactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.transactionDate, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                <div class="container">
+                    <div class="form-group">
+
+                        <label class="control-label col-md-2">Amount:</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <lable class="control-label col-md-2"><b>Date:</b></lable>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.transactionDate, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
                     </div>
                 </div>
             </div>
