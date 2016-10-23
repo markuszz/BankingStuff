@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingStuff.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,6 +15,15 @@ namespace BankingStuff.Models
         public long customerID { get; set; }
         public int balance { get; set; }
 
+        public string getAccount(int customerID)
+        {
+            BankContext db = new BankContext();
+            string name = "";
+            name += db.Customers.First(x => x.customerID == customerID).firstName;
+            name += " " + db.Customers.First(x => x.customerID == customerID).firstName;
+
+            return name;
+        }
 
         public virtual ICollection<Transaction> Transaction { get; set; }
     }

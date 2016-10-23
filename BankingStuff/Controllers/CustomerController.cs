@@ -44,7 +44,7 @@ namespace BankingStuff.Controllers
         [HttpPost]
         public ActionResult Details(Customer customer) 
         {
-            return RedirectToAction("Details", new { id = Session["custID"] });
+            return RedirectToAction("Details", new { id= Session["custID"] });
         }
 
 

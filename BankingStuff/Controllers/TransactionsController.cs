@@ -26,8 +26,18 @@ namespace BankingStuff.Controllers
 
         public ActionResult showTransactions()
         {
-            return View();
+            long custID = (long)Session["custID"];
+            List<Account> allCustomerAccounts = db.Accounts.Where(x => x.customerID == custID).ToList();
+            List<Transaction> allTransactions = new List<Transaction>();
+            foreach(var item in allCustomerAccounts)
+            {
+                allTransactions.AddRange(item.Transaction.ToList());
+                
+            }
+            return View(allTransactions);
         }
+
+
        
 
         // GET: Transactions
@@ -101,11 +111,16 @@ namespace BankingStuff.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "transactionID,accountID,receiverID,amount,transactionDate")] Transaction transaction)
+        public ActionResult Edit([Bind(Include = "transactionID,accountID,receiverAccountID,amount,transactionDate")] Transaction transaction)
         {
+            Transaction original = db.Transactions.First(x => x.transactionID == transaction.transactionID);
+            transaction.transactionID = original.transactionID;
+            transaction.accountID = original.accountID;
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(transaction).State = EntityState.Modified;
+                //db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

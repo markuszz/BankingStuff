@@ -184,6 +184,7 @@
     <Content Include="Views\Transactions\MakeTransaction.cshtml" />
     <Content Include="Views\Transactions\_ShowAccounts.cshtml" />
     <Content Include="Views\Transactions\showTransactions.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

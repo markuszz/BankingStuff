@@ -1,4 +1,4 @@
-﻿@model BankingStuff.Models.Transaction
+﻿@model List<BankingStuff.Models.Transaction>
 
 @{
     ViewBag.Title = "showTransactions";
@@ -10,41 +10,61 @@
     <h4>Transaction</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.accountID)
-        </dt>
+        
+        <h1>Future Transactions</h1>
+        <table>
+            <tr>
+                <th>From Account</th>
+                <th>Receiver Name </th>
+                <th>To Account</th>
+                <th>Amount</th>
+                <th>TransactionDate</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                if (item.transactionDate > DateTime.Now)
+                {
+                    <tr>
+                        <td>@item.getAccountNameOfTransactionParticipant(item)[0]</td>
+                        <td>@item.getFullNameOfTransactionRecipient(item)</td>
+                        <td>@item.getAccountNameOfTransactionParticipant(item)[1]</td>
+                        <td>@item.amount</td>
+                        <td>@item.transactionDate</td>
+                        <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
+                    </tr>
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.accountID)
-        </dd>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.receiverAccountID)
-        </dt>
+        </table>
+        <h1>Completed Transactions</h1>
+        <table>
+            <tr>
+                <th>From Account</th>
+                <th>Receiver Name </th>
+                <th>To Account</th>
+                <th>Amount</th>
+                <th>TransactionDate</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                if (item.transactionDate < DateTime.Now)
+                {
+                    <tr>
+                        <td>@item.getAccountNameOfTransactionParticipant(item)[0]</td>
+                        <td>@item.getFullNameOfTransactionRecipient(item)</td>
+                        <td>@item.getAccountNameOfTransactionParticipant(item)[1]</td>
+                        <td>@item.amount</td>
+                        <td>@item.transactionDate</td>
+                    </tr>
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.receiverAccountID)
-        </dd>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.transactionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.transactionDate)
-        </dd>
+        </table>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.transactionID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
