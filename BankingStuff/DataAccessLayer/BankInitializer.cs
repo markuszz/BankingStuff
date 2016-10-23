@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using BankingStuff.DataAccessLayer;
 using BankingStuff.Models;
+using System.Security.Cryptography;
 
 namespace BankingStuff.DataAccessLayer
 {
@@ -12,12 +13,21 @@ namespace BankingStuff.DataAccessLayer
     {
         protected override void Seed(BankContext context)
         {
+
+            var algorithm = System.Security.Cryptography.SHA512.Create();
+            string pass1 = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes("pass")));
+            string pass2 = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes("passord")));
+            string pass3 = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes("ponny")));
+            string pass4 = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes("matpåflaske")));
+
+
             var customers = new List<Customer>
             {
-                new Customer{customerID=23069431151,password="pass",firstName="Markus", lastName="Hellestveit"},
-                new Customer{customerID=12121212121,password="pass", firstName="johnny", lastName="lam"},
-                new Customer{customerID=34343434343,password="ponny", firstName="per", lastName="Andreasen"},
-                new Customer{customerID=95594032195, password="matpåflaske", firstName="donald", lastName="trump"}
+
+                new Customer {customerID=23069431151,password=pass1,firstName="Markus", lastName="Hellestveit"},
+                new Customer{customerID=12121212121,password=pass2, firstName="johnny", lastName="lam"},
+                new Customer{customerID=34343434343,password=pass3, firstName="per", lastName="Andreasen"},
+                new Customer{customerID=95594032195, password=pass4, firstName="donald", lastName="trump"}
             };
             customers.ForEach(s => context.Customers.Add(s));
             context.SaveChanges();

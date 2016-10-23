@@ -61,14 +61,20 @@ namespace BankingStuff.Controllers
 
             if (ModelState.IsValid)
             {
+                var algorithm = System.Security.Cryptography.SHA512.Create();
                 this.customerID = customer.customerID;
                 string password = Customer.GetUserPassword(customer.customerID);
+                string inputPasswordHash = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes("pass")));
+
 
                 if (string.IsNullOrEmpty(password))
                     ModelState.AddModelError("", "The user login or password provided is incorrect.");
                 else
                 {
-                    if (customer.password.Equals(password))
+
+                    string actualPasswordHash = System.Text.Encoding.Default.GetString(algorithm.ComputeHash(System.Text.Encoding.ASCII.GetBytes(customer.password)));
+
+                    if (actualPasswordHash.Equals(inputPasswordHash))
                     { 
                         Session["custID"] = customer.customerID;
                         FormsAuthentication.SetAuthCookie(customer.customerID.ToString(), false);
