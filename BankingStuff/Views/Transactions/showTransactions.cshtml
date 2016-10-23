@@ -4,63 +4,75 @@
     ViewBag.Title = "showTransactions";
 }
 
-<h2>showTransactions</h2>
+<h1>Show Transactions</h1>
 
 <div>
     <h4>Transaction</h4>
     <hr />
-    <dl class="dl-horizontal">
-        
-        <h1>Future Transactions</h1>
-        <table>
-            <tr>
-                <th>Receipient</th>
-                <th>Amount</th>
-                <th>Transaction Date</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                if (item.transactionDate > DateTime.Now)
-                {
-                    <tr>
-                        <td>@item.getFullNameOfTransactionRecipient(item)</td>                   
-                        <td>@item.amount</td>
-                        <td>@item.transactionDate</td>
-                        <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
-                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.transactionID })</td>
+    <div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h1>Future Transactions</h1></div>
+            <div class="panel-body">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>Receipient</th>
+                            <th>Amount</th>
+                            <th>Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.transactionDate > DateTime.Now)
+                            {
+                                <tr>
+                                    <td>@item.getFullNameOfTransactionRecipient(item)</td>
+                                    <td>@item.amount</td>
+                                    <td>@item.transactionDate</td>
+                                    <td>@Html.ActionLink("Edit", "Edit", null, new { id = item.transactionID }, new { @class = "btn btn-success"})</td>
+                                    <td>@Html.ActionLink("Delete", "Delete",null, new { id = item.transactionID }, new { @class = "btn btn-danger" })</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
 
-                    </tr>
-                }
-            }
+                </table>
+            </div>
+        </div>
 
-        </table>
-        <h1>Completed Transactions</h1>
-        <table>
-            <tr>
-                <th>Receipient</th>
-                <th>Amount</th>
-                <th>Transaction Date</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                if (item.transactionDate < DateTime.Now)
-                {
-                    <tr>
-                        <td>@item.getFullNameOfTransactionRecipient(item)</td>
-                        <td>@item.amount</td>
-                        <td>@item.transactionDate</td>
-                        <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
-                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.transactionID })</td>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h1>Completed Transactions</h1></div>
+            <div class="panel-body">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>Receipient</th>
+                            <th>Amount</th>
+                            <th>Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.transactionDate < DateTime.Now)
+                            {
+                                <tr>
+                                    <td>@item.getFullNameOfTransactionRecipient(item)</td>
+                                    <td>@item.amount</td>
+                                    <td>@item.transactionDate</td>
+                                    <td>@Html.ActionLink("Edit", "Edit",null, new { id = item.transactionID }, new { @class = "btn btn-success" })</td>
+                                    <td>@Html.ActionLink("Delete", "Delete",null, new { id = item.transactionID }, new { @class = "btn btn-danger" })</td>
+                                </tr>
+                            }
 
-                    </tr>
-                }
-
-            }
-
-        </table>
-
-    </dl>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Overview", "Details", "Customer", new { id = Session["custID"] }, null)
 </p>
