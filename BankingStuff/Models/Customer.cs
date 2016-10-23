@@ -10,11 +10,12 @@ namespace BankingStuff.Models
 {
     public class Customer
     {
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression(@"[0-9]{11}",ErrorMessage ="Please write a correct person number")]
         [Display(Name = "Login ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long customerID { get; set; }
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
