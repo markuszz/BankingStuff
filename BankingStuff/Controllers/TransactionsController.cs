@@ -23,6 +23,11 @@ namespace BankingStuff.Controllers
             
             return PartialView("_ShowAccounts", accounts);
         }
+
+        public ActionResult showTransactions()
+        {
+            return View();
+        }
        
 
         // GET: Transactions
