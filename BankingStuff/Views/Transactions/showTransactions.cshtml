@@ -27,6 +27,8 @@
                         <td>@item.amount</td>
                         <td>@item.transactionDate</td>
                         <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.transactionID })</td>
+
                     </tr>
                 }
             }
@@ -48,6 +50,8 @@
                         <td>@item.amount</td>
                         <td>@item.transactionDate</td>
                         <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.transactionID })</td>
+
                     </tr>
                 }
 
