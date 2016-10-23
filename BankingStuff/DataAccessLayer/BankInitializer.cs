@@ -39,7 +39,11 @@ namespace BankingStuff.DataAccessLayer
                 new Transaction{transactionID=1,accountID=1, receiverAccountID=2, amount=3000, transactionDate = DateTime.Parse("2016-11-12") },
                 new Transaction{transactionID=2,accountID=2, receiverAccountID=3, amount=9000, transactionDate = DateTime.Parse("2016-09-12") },
                 new Transaction{transactionID=3,accountID=3, receiverAccountID=1, amount=909090, transactionDate = DateTime.Parse("2016-01-12") },
-                
+                new Transaction{transactionID=4,accountID=1, receiverAccountID=2, amount=2591, transactionDate = DateTime.Parse("2016-11-10") },
+                new Transaction{transactionID=5,accountID=1, receiverAccountID=2, amount=4912, transactionDate = DateTime.Parse("2016-11-11") },
+
+
+
             };
 
             transactions.ForEach(s => context.Transactions.Add(s));

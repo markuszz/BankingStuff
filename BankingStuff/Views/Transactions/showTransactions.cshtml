@@ -14,48 +14,40 @@
         <h1>Future Transactions</h1>
         <table>
             <tr>
-                <th>From Account</th>
-                <th>Receiver Name </th>
-                <th>To Account</th>
+                <th>Receipient</th>
                 <th>Amount</th>
-                <th>TransactionDate</th>
+                <th>Transaction Date</th>
             </tr>
             @foreach (var item in Model)
             {
                 if (item.transactionDate > DateTime.Now)
                 {
                     <tr>
-                        <td>@item.getAccountNameOfTransactionParticipant(item)[0]</td>
-                        <td>@item.getFullNameOfTransactionRecipient(item)</td>
-                        <td>@item.getAccountNameOfTransactionParticipant(item)[1]</td>
+                        <td>@item.getFullNameOfTransactionRecipient(item)</td>                   
                         <td>@item.amount</td>
                         <td>@item.transactionDate</td>
                         <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
                     </tr>
                 }
-
             }
 
         </table>
         <h1>Completed Transactions</h1>
         <table>
             <tr>
-                <th>From Account</th>
-                <th>Receiver Name </th>
-                <th>To Account</th>
+                <th>Receipient</th>
                 <th>Amount</th>
-                <th>TransactionDate</th>
+                <th>Transaction Date</th>
             </tr>
             @foreach (var item in Model)
             {
                 if (item.transactionDate < DateTime.Now)
                 {
                     <tr>
-                        <td>@item.getAccountNameOfTransactionParticipant(item)[0]</td>
                         <td>@item.getFullNameOfTransactionRecipient(item)</td>
-                        <td>@item.getAccountNameOfTransactionParticipant(item)[1]</td>
                         <td>@item.amount</td>
                         <td>@item.transactionDate</td>
+                        <td>@Html.ActionLink("Edit", "Edit", new { id = item.transactionID })</td>
                     </tr>
                 }
 

@@ -114,15 +114,15 @@ namespace BankingStuff.Controllers
         public ActionResult Edit([Bind(Include = "transactionID,accountID,receiverAccountID,amount,transactionDate")] Transaction transaction)
         {
             Transaction original = db.Transactions.First(x => x.transactionID == transaction.transactionID);
-            transaction.transactionID = original.transactionID;
-            transaction.accountID = original.accountID;
+            original.receiverAccountID = transaction.receiverAccountID;
+            original.amount = transaction.amount;
+            original.transactionDate = transaction.transactionDate;
 
 
             if (ModelState.IsValid)
             {
-                //db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ShowTransactions");
             }
             return View(transaction);
         }

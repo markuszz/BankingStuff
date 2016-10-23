@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -25,15 +26,18 @@ namespace BankingStuff.Models
             return custID;
         }
 
+        /*
         public string[] getAccountNameOfTransactionParticipant(Transaction transaction)
         {
             string[] a = new string[2];
 
+            Debug.Write("AccountID: " + transaction.accountID);
             a[0] = db.Accounts.First(x => x.accountID == transaction.accountID).accountName;
             a[1] = db.Accounts.First(x => x.accountID == transaction.receiverAccountID).accountName;
 
             return a;
         }
+        */
 
         public string getFullNameOfTransactionRecipient(Transaction transaction)
         {
